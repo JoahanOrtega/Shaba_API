@@ -25,7 +25,6 @@ class SaleFactory extends Factory
             'id_product' => \App\Models\Product::factory(),
             'id_user' => \App\Models\User::factory(),
             'sale_date' => $this->faker->date(),
-            'quantity' => $this->faker->numberBetween(1, 10),
             'total_price' => $this->faker->randomFloat(2, 10, 500),
         ];
     }
