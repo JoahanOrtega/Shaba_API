@@ -29,7 +29,7 @@ class SaleController extends Controller
     {
         $request->validate([
             'id_product' => 'required|exists:products,id_product',
-            'id_customer' => 'required|exists:customers,id',
+            'id_user' => 'required|exists:customers,id',
             'sale_date' => 'required|date',
             'quantity' => 'required|integer|min:1',
             'total_price' => 'required|numeric|min:0'

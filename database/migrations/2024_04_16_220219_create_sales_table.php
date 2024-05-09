@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->date('sale_date');
-            $table->integer('quantity');
             $table->decimal('total_price', 10, 2);
             $table->timestamps();
         });
