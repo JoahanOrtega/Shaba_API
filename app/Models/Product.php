@@ -11,6 +11,8 @@ class Product extends Model
 
     use HasFactory;
 
+
+    // N - 1
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class, 'id_subcategory');

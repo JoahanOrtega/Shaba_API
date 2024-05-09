@@ -11,6 +11,8 @@ class Category extends Model
 
     use HasFactory;
 
+
+    //  1 - N
     public function subcategories()
     {
         return $this->hasMany(Subcategory::class);

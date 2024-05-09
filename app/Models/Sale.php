@@ -11,11 +11,14 @@ class Sale extends Model
 
     use HasFactory;
 
+
+    // N - 1
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    //este si no sabo
     public function products()
     {
         return $this->belongsToMany(Product::class);
