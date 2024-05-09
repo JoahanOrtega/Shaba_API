@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -100,6 +101,9 @@ class UserController extends Controller
     public function logout()
     {
         if(auth()->check()){
+            //olvidar la cookie
+            $cookie = Cookie::forget('cookie_token');
+
 
             $token = auth()->user()->token();
     
@@ -108,7 +112,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => '200',
                 'message' => 'User Logged out succesfully'
-            ]);
+            ])->withCookie($cookie);
         }
         return response()->json([
             'status' => '401',
