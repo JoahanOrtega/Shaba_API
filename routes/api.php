@@ -24,7 +24,9 @@ Route::group([
     "middleware" => ['auth:api']
 ], function(){
     Route::get('/users', [UserController::class, 'index']);
-    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::get('/users/{id}', [UserController::class, 'show']); 
+    Route::get('/logout', [UserController::class, 'logout']);
+
     Route::resource('/categories', CategoryController::class);
     Route::resource('/subcategories', SubcategoryController::class);
     Route::resource('/products', ProductController::class);
