@@ -74,7 +74,7 @@ class UserController extends Controller
                     'status' => '200',
                     'meesage' => "Login succesful",
                     "token" => $token,
-                    'data' => [],
+                    'data' => $user,
                 ])->withoutCookie($cookie);
             }else{
                 return response()->json([
