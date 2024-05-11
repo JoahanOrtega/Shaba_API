@@ -58,10 +58,10 @@ class ProductController extends Controller
         }
 
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
-            'id_subcategory' => 'required|exists:subcategories,id_subcategory',
+            'name' => 'string',
+            'description' => 'string',
+            'price' => 'numeric',
+            'id_subcategory' => 'numeric',
             'size' => 'nullable',
             'color' => 'nullable',
             'available_quantity' => 'integer',
