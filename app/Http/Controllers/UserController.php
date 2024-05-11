@@ -154,12 +154,12 @@ class UserController extends Controller
         }
 
         $request->validate([
-            'first_name' => 'string',
-            'last_name' => 'string',
-            'address' => 'string',
-            'email' => 'string|email',
-            'password' => 'string',
-            'phone' => 'string'
+            'first_name' => 'sometimes|required',
+            'last_name' => 'sometimes|required',
+            'address' => 'sometimes|required',
+            'email' => 'sometimes|required|email',
+            'password' => 'sometimes|required',
+            'phone' => 'sometimes|required'
         ]);
 
         $user->update($request->all());
