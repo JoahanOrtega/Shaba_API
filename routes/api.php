@@ -24,9 +24,12 @@ Route::group([
     "middleware" => ['auth:api']
 ], function(){
     Route::get('/check', [UserController::class, 'check']);
+    Route::get('/logout', [UserController::class, 'logout']);
+    
     Route::get('/users', [UserController::class, 'index']);
     Route::get('/users/{id}', [UserController::class, 'show']); 
-    Route::get('/logout', [UserController::class, 'logout']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
     Route::resource('/categories', CategoryController::class);
     Route::resource('/subcategories', SubcategoryController::class);
@@ -39,8 +42,6 @@ Route::group([
 
 // Rutas para el controlador UserController
 
-// Route::put('/users/{id}', [UserController::class, 'update']);
-// Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 // Rutas para el controlador CategoryController
 // Route::get('/categories', [CategoryController::class, 'index']);

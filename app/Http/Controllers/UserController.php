@@ -70,13 +70,12 @@ class UserController extends Controller
                 // Password mateched
                 //add token value
                 $token = $user->createToken("myToken")->accessToken;
-                $cookie = cookie('cookie_token', $token, 60*24);
                 return response()->json([
                     'status' => '200',
                     'meesage' => "Login succesful",
                     "token" => $token,
                     'data' => $user,
-                ])->withoutCookie($cookie);
+                ]);
             }else{
                 return response()->json([
                     'status' => '400',
@@ -103,7 +102,6 @@ class UserController extends Controller
     {
         if(auth()->check()){
             //olvidar la cookie
-            $cookie = Cookie::forget('cookie_token');
 
 
             $token = auth()->user()->token();
@@ -113,7 +111,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => '200',
                 'message' => 'User Logged out succesfully'
-            ])->withCookie($cookie);
+            ]);
         }
         return response()->json([
             'status' => '401',
@@ -192,7 +190,7 @@ class UserController extends Controller
             // Verificar si el token es válido
             if (Auth::guard('api')->check()) {
                 
-                // Devolver el nuevo token junto con los datos del usuario asociado al token
+                // Devolver el token junto con los datos del usuario asociado al token
                 return response()->json([
                     'status' => '200',
                     'message' => 'Token verified successfully',
