@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 
@@ -179,5 +180,36 @@ class UserController extends Controller
         }
         $user->delete();
         return response()->json(['message' => 'User deleted succesfully'], 200);
+    }
+
+    // GET - Obtener un cliente por su ID
+    // (o no LOGIN)
+    public function check(Request $request)
+    {
+        // Obtener el token de autorización del encabezado de la solicitud
+        $token = $request->bearerToken();
+        if ($token) {
+            // Verificar si el token es válido
+            if (Auth::guard('api')->check()) {
+                
+                // Devolver el nuevo token junto con los datos del usuario asociado al token
+                return response()->json([
+                    'status' => '200',
+                    'message' => 'Token verified successfully',
+                    'token' => $token,
+                    'data' => Auth::guard('api')->user(),
+                ]);
+            } else {
+                return response()->json([
+                    'status' => '401',
+                    'message' => 'Invalid token',
+                ], 401);
+            }
+        } else {
+            return response()->json([
+                'status' => '401',
+                'message' => 'Token not provided',
+            ], 401);
+        }
     }
 }
