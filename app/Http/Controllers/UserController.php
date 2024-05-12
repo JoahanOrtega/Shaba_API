@@ -142,29 +142,32 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    // PUT - Actualizar un cliente existente
     public function update(Request $request, string $id)
-    {
-        $user = User::find($id);
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
-
-        $request->validate([
-            'first_name' => 'sometimes|required',
-            'last_name' => 'sometimes|required',
-            'address' => 'sometimes|required',
-            'email' => 'sometimes|required|email',
-            'password' => 'sometimes|required',
-            'phone' => 'sometimes|required'
-        ]);
-
-        $user->update($request->all());
-        return response()->json($user, 200);
+{
+    $user = User::find($id);
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
     }
+
+    $data = $request->validate([
+        'first_name' => 'sometimes|required',
+        'last_name' => 'sometimes|required',
+        'address' => 'sometimes|required',
+        'email' => 'sometimes|required|email',
+        'password' => 'sometimes|required|min:5', // La nueva contraseña debe tener al menos 6 caracteres
+        'phone' => 'sometimes|required'
+    ]);
+
+    // Verifica si se proporcionó una nueva contraseña en la solicitud
+    if (isset($data['password'])) {
+        // Hashea la nueva contraseña antes de guardarla en la base de datos
+        $data['password'] = bcrypt($data['password']);
+    }
+
+    $user->update($data);
+
+    return response()->json($user, 200);
+}
 
     /**
      * Remove the specified resource from storage.
