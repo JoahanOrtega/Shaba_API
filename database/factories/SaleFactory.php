@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use App\Models\Sale;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SaleFactory extends Factory
@@ -21,11 +23,21 @@ class SaleFactory extends Factory
      */
     public function definition()
     {
+        // Obtener un producto aleatorio
+        $product = Product::inRandomOrder()->first();
+
+        // Obtener un usuario aleatorio
+        $user = User::inRandomOrder()->first();
+
+        // Calcular el precio total basado en el precio del producto
+        $totalPrice = $product->price;
+
         return [
-            'id_product' => \App\Models\Product::factory(),
-            'id_user' => \App\Models\User::factory(),
+            'id_product' => $product->id,
+            'id_user' => $user->id,
             'sale_date' => $this->faker->date(),
-            'total_price' => $this->faker->randomFloat(2, 10, 500),
+            'total_price' => $totalPrice,
         ];
+        
     }
 }
