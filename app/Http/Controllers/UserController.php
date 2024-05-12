@@ -54,7 +54,7 @@ class UserController extends Controller
     }
 
 
-    // POST - Crear un nuevo cliente (LOGIN)
+    // POST - Iniciar sesion con el cliente (LOGIN)
     public function login(Request $request)
     {
         $request->validate([

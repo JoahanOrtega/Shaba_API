@@ -26,8 +26,8 @@ class SaleFactory extends Factory
         // Obtener un producto aleatorio
         $product = Product::inRandomOrder()->first();
 
-        // Obtener un usuario aleatorio
-        $user = User::inRandomOrder()->first();
+        // Obtener un usuario aleatorio excluyendo al admin
+        $user = User::whereNotIn('id', [1])->inRandomOrder()->first();
 
         // Calcular el precio total basado en el precio del producto
         $totalPrice = $product->price;
