@@ -31,11 +31,11 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
-            'id_subcategory' => 'required|exists:subcategories,id_subcategory',
+            'id_category' => 'required',
             'size' => 'nullable',
             'color' => 'nullable',
             'available_quantity' => 'integer',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $product = Product::create($request->all());
@@ -61,7 +61,7 @@ class ProductController extends Controller
             'name' => 'string',
             'description' => 'string',
             'price' => 'numeric',
-            'id_subcategory' => 'numeric',
+            'id_category' => 'numeric',
             'size' => 'nullable',
             'color' => 'nullable',
             'available_quantity' => 'integer',

@@ -32,7 +32,6 @@ Route::group([
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
     Route::resource('/categories', CategoryController::class);
-    Route::resource('/subcategories', SubcategoryController::class);
     Route::resource('/products', ProductController::class);
     Route::resource('/sales', SaleController::class);
 

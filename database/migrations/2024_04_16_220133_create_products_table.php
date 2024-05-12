@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->decimal('price', 10, 2);
-            $table->unsignedBigInteger('id_subcategory');
-            $table->foreign('id_subcategory')->references('id')->on('subcategories')->onDelete('cascade');
+            $table->unsignedBigInteger('id_category');
+            $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade');
             $table->string('size')->nullable();
             $table->string('color')->nullable();
             $table->integer('available_quantity')->default(0);
