@@ -63,7 +63,7 @@ class ProductSeeder extends Seeder
                 'size' => 'S',
                 'color' => 'purple',
                 'available_quantity' => 19,
-                'img' => 'https://via.placeholder.com/640x480.png/00ddff?text=magnam',
+                'img' => 'https://i.pinimg.com/originals/a2/ec/2a/a2ec2ab51ba8077047fb224a4061e618.jpg',
             ],
             [
                 'name' => 'Vestido Dicta',
