@@ -39,9 +39,9 @@ class UserController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'address' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required|confirmed', // password_confirmation
-            'phone' => 'required|regex:/^\d{10}$/',
+            'phone' => 'required',
         ]);
 
         $user = User::create($request->all());
